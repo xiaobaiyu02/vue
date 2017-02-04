@@ -1,0 +1,115 @@
+$input-color: #92989e;
+$doneshap-color: #15b651;
+#to-do-list{
+	width: 20%;
+	margin: 0 auto;
+	font-family: cursive;
+	.input {
+		font-family: cursive;
+		height: 5em;
+		margin: 0 auto;
+		position: relative;
+		overflow: hidden;
+		&.hasVal{
+			.input_label{
+				transform: translate3d(-.3em, -1.8em, 0) scale3d(0.75, 0.75, 1);
+				color: darken($input-color, 50%);
+			}
+			.graphic{
+				transform: translate3d(-66.6%, 0, 0);
+				stroke: darken($input-color, 50%);
+			}
+		}
+		.input_field{
+			font-family: cursive;
+			position: absolute;
+			z-index: 99;
+			left: 0;
+			bottom: 10px;
+			width: 100%;
+			border: none;
+			outline: none;
+			font-size: 1.8em;
+			color: $input-color;
+			background: transparent;
+			&:focus ~ .input_label{
+				transform: translate3d(-.3em, -1.8em, 0) scale3d(0.75, 0.75, 1);
+				color: darken($input-color, 20%);
+			}
+			&:focus ~ .graphic{
+				transform: translate3d(-66.6%, 0, 0);
+				stroke: darken($input-color, 20%);
+			}
+		}
+		.input_label{
+			font-size: 1.5em;
+			color: $input-color;
+			position: absolute;
+			z-index: 9;
+			left: -.1em;
+			top: 50%;
+			transition: transform 0.5s 0.15s, color 1s;
+		}
+		.graphic{
+			stroke: $input-color;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    fill: none;
+		    transition: transform 0.8s, stroke 0.7s;
+		}
+	}
+	.list{
+		ul{
+			font-size: 1.2em;
+			color: $input-color;
+			margin-top: 1em;
+			li{
+				padding: .8em;
+				margin-bottom: .8em;
+				position: relative;
+				list-style-type: decimal;
+				list-style-position: inside;
+				background-color: #f9f9f9;
+				cursor: pointer;
+				&:hover{
+					background-color: #f3f3f3;
+					.delete{
+						display: block;
+					}
+				}
+				&.done{
+					.doneshap .path{
+						stroke-dashoffset: 0;
+					}
+				}
+				.doneshap{
+					position: absolute;
+					z-index: 999;
+					right: -12%;
+					top: 25%;
+					width: 50%;
+					height: 100%;
+					.path{
+						stroke-dasharray: 1000;
+						stroke-dashoffset: 1000;
+						transition: all 0.7s linear;
+					}
+				}
+				.listname{}
+				.delete{
+					position: absolute;
+					z-index: 999;
+					right: -6px;
+					top: -6px;
+					display: inline-block;
+					width: 18px;
+					height: 18px;
+					background: url('../assets/erase.png') 0 0 no-repeat;
+					background-size: 100% 100%;
+					display: none;
+				}
+			}
+		}
+	}
+}
