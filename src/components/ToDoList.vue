@@ -23,21 +23,14 @@
 </template>
 
 <script>
+	import StoreList from '../js/todo-list-store.js';
+
 	export default{
 		name: 'to-do-list',
 		data(){
 			return{
-				newItem: '123',
-				lists: [{
-							name: 'I want a apple, a big big red round apple!',
-							done: false
-						},{
-							name: 'Tell mum buy a group of banana and send to grandma',
-							done: false
-						},{
-							name: 'Read a book and drink a cup of tea',
-							done: true
-						}]
+				newItem: '',
+				lists: StoreList.fetch()
 			}
 		},
 		methods:{
@@ -55,6 +48,14 @@
 					});
 					this.newItem = '';
 				}
+			}
+		},
+		watch:{
+			lists:{
+				handler: function(lists){
+					StoreList.save(lists);
+				},
+				deep: true
 			}
 		}
 	}
